@@ -11,11 +11,11 @@ export const booksMdw: Middleware<{}, RootState> = (_store) => (next) => (action
   if (isFetchBooksAction(action)) {
     next(apiRequest({ domain: BOOKS, method: 'GET', url: '/books' }))
     next(setLoader({ domain: BOOKS, status: true }))
-  } else if (isApiSuccessAction(action) && action.meta?.domain === BOOKS) {
+  } else if (isApiSuccessAction(action) && action.meta.domain === BOOKS) {
     next(setBooks((action.payload || []) as Book[]))
     next(setLoader({ domain: BOOKS, status: false }))
     next(setNotification({ domain: BOOKS, text: 'Books loaded' }))
-  } else if (isApiErrorAction(action) && action.meta?.domain === BOOKS) {
+  } else if (isApiErrorAction(action) && action.meta.domain === BOOKS) {
     next(setNotification({ domain: BOOKS, text: action.payload }))
     next(setLoader({ domain: BOOKS, status: false }))
   }

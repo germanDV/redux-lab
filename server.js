@@ -10,15 +10,78 @@ app.listen(PORT, () => {
 })
 
 app.get('/books', (req, res) => {
-  res.json({ books: booksDB })
+  const idsStr = req.query.ids
+
+  if (!idsStr) {
+    res.json({ books: booksDB })
+    return
+  }
+
+  const ids = idsStr.split(',')
+  const books = booksDB.filter(b => ids.includes(b.id))
+  res.json({ books })
+})
+
+app.get('/books/:id', (req, res) => {
+  const bookId = req.params.id
+  const book = booksDB.find(b => b.id === bookId)
+
+  if (!book) {
+    res.status(404).send()
+    return
+  }
+
+  res.json({ book })
 })
 
 app.get('/authors', (req, res) => {
-  res.json({ authors: authorsDB })
+  const idsStr = req.query.ids
+
+  if (!idsStr) {
+    res.json({ authors: authorsDB })
+    return
+  }
+
+  const ids = idsStr.split(',')
+  const authors = authorsDB.filter(a => ids.includes(a.id))
+  res.json({ authors })
+})
+
+app.get('/authors/:id', (req, res) => {
+  const authorId = req.params.id
+  const author = authorsDB.find(a => a.id === authorId)
+
+  if (!author) {
+    res.status(404).send()
+    return
+  }
+
+  res.json({ author })
 })
 
 app.get('/publishers', (req, res) => {
-  res.json({ publishers: publishersDB })
+  const idsStr = req.query.ids
+
+  if (!idsStr) {
+    res.json({ publishers: publishersDB })
+    return
+  }
+
+  const ids = idsStr.split(',')
+  const publishers = publishersDB.filter(p => ids.includes(p.id))
+  res.json({ publishers })
+})
+
+app.get('/publishers/:id', (req, res) => {
+  const publisherId = req.params.id
+  const publisher = publishersDB.find(p => p.id === publisherId)
+
+  if (!publisher) {
+    res.status(404).send()
+    return
+  }
+
+  res.json({ publisher })
 })
 
 const booksDB = [

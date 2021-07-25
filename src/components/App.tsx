@@ -1,12 +1,12 @@
 import React, { ReactElement, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchBooks, selectBooks } from '../store/book'
+import { fetchBooks, selectBooksWithAuthors } from '../store/book'
 import { selectIsLoading, selectNotificationList } from '../store/ui'
 
 const App = (): ReactElement => {
   const dispatch = useDispatch()
   const isLoading = useSelector(selectIsLoading)
-  const books = useSelector(selectBooks)
+  const books = useSelector(selectBooksWithAuthors)
   const notifications = useSelector(selectNotificationList)
 
   useEffect(() => {

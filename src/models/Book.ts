@@ -1,3 +1,5 @@
+import { Author } from './Author'
+
 export type Book = {
   id: string;
   title: string;
@@ -6,3 +8,5 @@ export type Book = {
   author: string[];
   genres: string[];
 }
+
+export type BookWithAuthor = Omit<Book, 'author'> & { author: Author[] }

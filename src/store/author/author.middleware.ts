@@ -12,7 +12,7 @@ export const authorsMdw: Middleware<{}, RootState> = (_store) => (next) => (acti
     next(apiRequest({ domain: AUTHORS, method: 'GET', url: `/authors?ids=${action.payload}`}))
     next(setLoader({ domain: AUTHORS, status: true }))
   } else if (isApiSuccessAction(action) && action.meta.domain === AUTHORS) {
-    next(setAuthors(action.payload as Author[]))
+    next(setAuthors((action.payload as {authors: Author[]}).authors))
     next(setLoader({ domain: AUTHORS, status: false }))
     next(setNotification({ domain: AUTHORS, text: 'Authors loaded' }))
   } else if (isApiErrorAction(action) && action.meta.domain === AUTHORS) {

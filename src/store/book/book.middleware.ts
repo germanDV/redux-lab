@@ -19,7 +19,7 @@ export const booksMdw: Middleware<{}, RootState> = (_store) => (next) => (action
     next(apiRequest({ domain: BOOKS, method: 'GET', url: '/books' }))
     next(setLoader({ domain: BOOKS, status: true }))
   } else if (isApiSuccessAction(action) && action.meta.domain === BOOKS) {
-    next(setBooks(action.payload as Book[]))
+    next(setBooks((action.payload as {books: Book[]}).books))
     next(setLoader({ domain: BOOKS, status: false }))
     next(setNotification({ domain: BOOKS, text: 'Books loaded' }))
     next(fetchAuthors({ ids: extractAuthorIds((action.payload as {books: Book[]}).books) }))

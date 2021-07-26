@@ -2,9 +2,13 @@ import { AnyAction } from 'redux';
 import { Action } from '../store'
 import { Notification } from '../../models'
 
+// Domain name
+export const UI = '[UI]'
+
 // Action types
 export const SET_LOADER = 'SET_LOADER'
 export const SET_NOTIFICATION = 'SET_NOTIFICATION'
+export const REMOVE_NOTIFICATION = 'REMOVE_NOTIFICATION'
 
 // Action creators
 type SetLoaderArgs = { domain: string; status: boolean; }
@@ -34,6 +38,17 @@ export function setNotification({ domain, text}: SetNotificationArgs): SetNotifi
   }
 }
 
+export type RemoveNotificationAction = Action<number, { domain: string }>
+export function removeNotification(id: number): RemoveNotificationAction {
+  return {
+    type: `${UI} ${REMOVE_NOTIFICATION}`,
+    payload: id,
+    meta: {
+      domain: UI,
+    },
+  }
+}
+
 // Action guards
 export function isSetLoaderAction(action: AnyAction): action is SetLoaderAction {
   return action.type.includes(SET_LOADER)
@@ -41,4 +56,8 @@ export function isSetLoaderAction(action: AnyAction): action is SetLoaderAction 
 
 export function isSetNotificationAction(action: AnyAction): action is SetNotificationAction {
   return action.type.includes(SET_NOTIFICATION)
+}
+
+export function isRemoveNotificationAction(action: AnyAction): action is RemoveNotificationAction {
+  return action.type === `${UI} ${REMOVE_NOTIFICATION}`
 }

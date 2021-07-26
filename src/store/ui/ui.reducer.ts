@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux'
 import produce from 'immer'
 import { Notification } from '../../models'
-import { isSetLoaderAction, isSetNotificationAction } from './ui.actions'
+import { isSetLoaderAction, isSetNotificationAction, isRemoveNotificationAction } from './ui.actions'
 
 interface UIState {
   loading: boolean;
@@ -19,6 +19,8 @@ export function uiReducer(state = initialState, action: AnyAction): UIState {
       draft.loading = action.payload
     } else if (isSetNotificationAction(action)) {
       draft.notifications.unshift(action.payload)
+    } else if (isRemoveNotificationAction(action)) {
+      draft.notifications = draft.notifications.filter(n => n.id !== action.payload)
     } else {
       return draft
     }

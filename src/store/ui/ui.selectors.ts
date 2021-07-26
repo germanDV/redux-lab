@@ -1,4 +1,3 @@
-import { createSelector } from 'reselect'
 import { RootState } from '../store'
 import { Notification } from '../../models'
 
@@ -9,8 +8,3 @@ export function selectIsLoading(state: RootState): boolean {
 export function selectNotifications(state: RootState): Notification[] {
   return state.ui.notifications
 }
-
-export const selectNotificationList = createSelector(
-  selectNotifications,
-  (notifications) => notifications.map(n => n.text).join(', '),
-)

@@ -1,3 +1,11 @@
+:root {
+  --bg-dark-base: #121212;
+  --bg-dark-primary: #1f1b24;
+  --error: #cf6679;
+  --font-primary: rgba(255, 255, 255, .87);
+  --font-mid-emphasis: rgba(255, 255, 255, .60);
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -5,8 +13,45 @@ body {
   font-family: 'Roboto', 'Ubuntu', 'Cantarell', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-dark-base);
+  color: var(--font-primary);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, monospace;
+}
+
+.mid-emphasis {
+  color: var(--font-mid-emphasis);
+}
+
+main {
+  padding: 14px;
+}
+
+aside {
+  background-color: var(--bg-dark-primary);
+  border: 1px solid var(--bg-dark-primary);
+  padding: 14px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: auto 300px;
+}
+
+.notification {
+  border: 1px solid var(--font-mid-emphasis);
+  margin: 14px 0;
+  padding: 2px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notification span {
+  color: var(--font-mid-emphasis);
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 28px;
 }

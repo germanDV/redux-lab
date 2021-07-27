@@ -8,6 +8,7 @@ export const BOOKS = '[BOOKS]'
 // Action types
 export const FETCH_BOOKS = `${BOOKS} FETCH`
 export const SET_BOOKS = `${BOOKS} SET`
+export const SELECT_BOOK = `${BOOKS} SELECT`
 
 // Action creators
 export type FetchBooksAction = Action<null, null>
@@ -30,6 +31,15 @@ export function setBooks(books: Book[]): SetBooksAction {
   }
 }
 
+export type SelectBookAction = Action<string, null>
+export function selectBook(bookId: string): SelectBookAction {
+  return {
+    type: SELECT_BOOK,
+    payload: bookId,
+    meta: null,
+  }
+}
+
 // Action guards
 export function isFetchBooksAction(action: AnyAction): action is FetchBooksAction {
   return action.type === FETCH_BOOKS
@@ -37,4 +47,8 @@ export function isFetchBooksAction(action: AnyAction): action is FetchBooksActio
 
 export function isSetBooksAction(action: AnyAction): action is SetBooksAction {
   return action.type === SET_BOOKS
+}
+
+export function isSelectBookAction(action: AnyAction): action is SelectBookAction {
+  return action.type === SELECT_BOOK
 }

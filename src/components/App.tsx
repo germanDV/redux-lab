@@ -1,26 +1,18 @@
-import React, { ReactElement, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { fetchBooks, selectBooksWithAuthors } from '../store/book'
+import React, { ReactElement } from 'react'
+import Books from './Books'
 import System from './System'
+import BookInfo from './BookInfo'
 
 const App = (): ReactElement => {
-  const dispatch = useDispatch()
-  const books = useSelector(selectBooksWithAuthors)
-
-  useEffect(() => {
-    dispatch(fetchBooks())
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
   return (
     <div className='layout'>
       <main>
-        <h1>Redux Store and Messaging System</h1>
-        {books ? (
-          <pre><code>{JSON.stringify(books, null, 2)}</code></pre>
-        ) : null}
+        <h1>REDUX EXPLORATION</h1>
+        <Books />
       </main>
       <aside>
         <System />
+        <BookInfo />
       </aside>
     </div>
   )

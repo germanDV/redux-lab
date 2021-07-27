@@ -55,3 +55,16 @@ aside {
   font-weight: bold;
   font-size: 28px;
 }
+
+.book-box {
+  /*border: 1px solid var(--bg-dark-primary);*/
+  background-color: var(--bg-dark-primary);
+  cursor: pointer;
+  color: var(--font-mid-emphasis);
+  margin: 14px 0;
+  padding: 8px 14px;
+}
+
+.book-box:hover {
+  color: var(--font-primary)
+}

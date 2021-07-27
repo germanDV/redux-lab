@@ -17,6 +17,7 @@ const System = (): ReactElement => {
       {notifications?.length > 0
         ? <Notifications notifications={notifications} />
         : <p>No messages</p>}
+      <hr />
     </div>
   )
 }

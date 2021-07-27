@@ -122,7 +122,7 @@ const booksDB = [
     title: 'Let\'s Go Further',
     year: 2019,
     publisherId: 'p0003',
-    author: ['a0004'],
+    author: ['a0004', 'a0001'],
     genres: ['golang'],
   },
   {
@@ -147,7 +147,7 @@ const authorsDB = [
   {
     id: 'a0001',
     name: 'Erich Gamma',
-    books: ['b0001'],
+    books: ['b0001', 'b0005'],
   },
   {
     id: 'a0002',

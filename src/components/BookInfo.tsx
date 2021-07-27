@@ -1,10 +1,12 @@
 import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
 import { selectSelectedBook, selectOtherBooksByAuthor } from '../store/book'
+import { selectPublisher } from '../store/publisher'
 
 const BookInfo = (): ReactElement | null => {
   const book = useSelector(selectSelectedBook)
   const otherBooks = useSelector(selectOtherBooksByAuthor)
+  const publisher = useSelector(selectPublisher)
 
   if (!book) return null
 
@@ -17,8 +19,15 @@ const BookInfo = (): ReactElement | null => {
       <p className='mid-emphasis'>Year:</p>
       <p>{book.year}</p>
 
-      <p className='mid-emphasis'>Publisher:</p>
-      <p>{book.publisherId}</p>
+      {publisher
+        ? (
+          <>
+            <p className='mid-emphasis'>Publisher:</p>
+            <p>{publisher.name}</p>
+          </>
+        )
+        : null
+      }
 
       {otherBooks && otherBooks.length > 0
         ? (
@@ -27,7 +36,8 @@ const BookInfo = (): ReactElement | null => {
             {otherBooks.map(i => <p key={i.id}>{i.title}</p>)}
           </>
         )
-        : null}
+        : null
+      }
     </>
   )
 }

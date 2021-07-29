@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, memo } from 'react'
 import { useDispatch } from 'react-redux'
 import { Notification as NotificationModel } from '../models'
 import { removeNotification } from '../store/ui'
@@ -22,4 +22,4 @@ const Notification = ({ notification }: Props): ReactElement => {
   )
 }
 
-export default Notification
+export default memo(Notification)

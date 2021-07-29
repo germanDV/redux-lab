@@ -1,4 +1,4 @@
-import React, { ReactElement, useMemo } from 'react'
+import React, { ReactElement, useMemo, memo } from 'react'
 import { useDispatch } from 'react-redux'
 import { BookWithAuthor } from '../models'
 import { selectBook } from '../store/book'
@@ -26,4 +26,4 @@ const Book = ({ book }: Props): ReactElement => {
   )
 }
 
-export default Book
+export default memo(Book)

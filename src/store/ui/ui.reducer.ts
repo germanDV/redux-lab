@@ -19,6 +19,9 @@ export function uiReducer(state = initialState, action: AnyAction): UIState {
       draft.loading = action.payload
     } else if (isSetNotificationAction(action)) {
       draft.notifications.unshift(action.payload)
+
+      // Keep only last 5 notifications
+      draft.notifications = draft.notifications.slice(0, 5)
     } else if (isRemoveNotificationAction(action)) {
       draft.notifications = draft.notifications.filter(n => n.id !== action.payload)
     } else {

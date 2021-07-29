@@ -3,7 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 import booksReducer, { booksMdw } from './book'
 import authorsReducer, { authorsMdw } from './author'
 import publisherReducer, { publisherMdw } from './publisher'
-import uiReducer from './ui'
+import uiReducer, { uiMdw } from './ui'
 import { apiMdw } from './api'
 
 export interface Action<P, M> {
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
 })
 
 const domainMdw: Middleware[] = [booksMdw, authorsMdw, publisherMdw]
-const coreMdw: Middleware[] = [apiMdw]
+const coreMdw: Middleware[] = [apiMdw, uiMdw]
 const enhancer = composeWithDevTools(applyMiddleware(...domainMdw, ...coreMdw))
 const preloadedState = {}
 
